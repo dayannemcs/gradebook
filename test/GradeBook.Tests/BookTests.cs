@@ -21,6 +21,7 @@ namespace GradeBook.Tests
             Assert.Equal(85.6, result.Average, 1); //comparando a média esperada com o real e utilizando apenas uma casa decimal
             Assert.Equal(90.5, result.High, 1); //comparando a nota mais alta real com o esperado
             Assert.Equal(77.3, result.Low, 1); // comparando a nota mais baixa com o esperaso
+            Assert.Equal('B', result.Letter);
         }
     }
 }

@@ -6,6 +6,14 @@ namespace GradeBook.Tests
     public class TypeTests
     {
         [Fact]
+        public void Teste01()
+        {
+            Book book = new Book("Teste");
+            var expect = book.AddGrade(105);
+            Assert.False(expect);
+           
+        }  
+        [Fact]
         public void CsharpCanPassByReference()
         {
             var book1 = GetBook("Book 1");
@@ -72,5 +80,7 @@ namespace GradeBook.Tests
         {
             return new Book(name);
         }
+
+    
     }
 }
