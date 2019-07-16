@@ -6,12 +6,31 @@ namespace GradeBook
 
     public delegate void GradedAddedDelegate(object sender, EventArgs args);
 
-    /* A class is a type. It is a data structure that combines state (fields) and actions (methods and other functions member)
-    into a single unit.*/
-    public class Book
+    public class NameObject
     {
-        //Declaring a constructor to initialize a member of the new object
-        public Book(string name) {
+        public NameObject(string name)
+        {
+            Name = name;
+        }
+
+        public string Name 
+        {
+            get;
+            set;
+        }
+    }
+
+    public abstract class BookBase : NameObject
+    {
+        public BookBase(string name) : base(name)
+        {
+        }
+
+        public abstract void AddGrade(double grade);
+    }
+    public class Book : BookBase
+    {
+        public Book(string name): base(name) {
             grades = new List<double>();
             Name = name;
         }
@@ -58,7 +77,7 @@ namespace GradeBook
             return result;
         }
       
-        public bool AddGrade(double grade)
+        public override void AddGrade(double grade)
         {
             if (grade <= 100 && grade > 0)
             {
@@ -67,7 +86,7 @@ namespace GradeBook
                 {
                     GradeAdded(this, new EventArgs());
                 }
-                return true;
+                
             }
             else
             {
@@ -78,17 +97,6 @@ namespace GradeBook
 
         private List<double> grades;
 
-        public string Name {
-            get {
-                return name;
-                }
-            set {
-                if (!String.IsNullOrEmpty(value))
-                {
-                    name = value;
-                }
-            }
-        }
-        public string name;
+    
     }
 }

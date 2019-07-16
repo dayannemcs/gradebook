@@ -7,9 +7,25 @@ namespace GradeBook
     {
         //Main method serves as the entry point of a program
         static void Main(string[] args)
-        {            
+        {
             var book = new Book("Dayanne gradebook");
+            EnterGrades(book);
 
+            var stats = book.GetStatistics();
+
+            Console.WriteLine($"For the book named {book.Name}");
+            //Print the highest grade
+            Console.WriteLine($"The highest grade is {stats.High}");
+            //Print the lowest grade
+            Console.WriteLine($"The lowest grade is {stats.Low}");
+            //printing the avg grade of the list and formatting to only one digit
+            Console.WriteLine($"The average grade is {stats.Average:N1}");
+            Console.WriteLine($"The letter grade is {stats.Letter}");
+
+        }
+
+        private static void EnterGrades(Book book)
+        {
             while (true)
             {
                 Console.WriteLine("Enter the grades or 'q' to quit: \n");
@@ -29,24 +45,12 @@ namespace GradeBook
                 {
                     Console.WriteLine(ex.Message);
                 }
-                catch(FormatException ex)
+                catch (FormatException ex)
                 {
                     Console.WriteLine(ex.Message);
                 }
-                
-            }            
-       
-            var stats =  book.GetStatistics();   
-            
-            Console.WriteLine($"For the book named {book.Name}");
-            //Print the highest grade
-            Console.WriteLine($"The highest grade is {stats.High}");
-            //Print the lowest grade
-            Console.WriteLine($"The lowest grade is {stats.Low}");
-            //printing the avg grade of the list and formatting to only one digit
-            Console.WriteLine($"The average grade is {stats.Average:N1}"); 
-            Console.WriteLine($"The letter grade is {stats.Letter}");
 
+            }
         }
     }
 }
